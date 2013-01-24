@@ -1,0 +1,19 @@
+--- 
+data_sources: 
+- items_root: /
+  layouts_root: /
+  type: filesystem_unified
+text_extensions: 
+- css
+- erb
+- haml
+- html
+- js
+- md
+- sass
+- scss
+output_dir: output
+base_url: "http://destructuring.org"
+author_name: "Tom Bombadil"
+author_email: "amanibhavam@destructuring.org"
+dev: true

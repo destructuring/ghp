@@ -1,0 +1,88 @@
+#!/usr/bin/env ruby
+
+compile /^\/home\// do
+	filter :erb
+	layout 'default'
+end
+
+compile '/styles/_*/' do 
+end 
+
+compile '/styles/*' do
+	if item[:extension] == "scss" && item.identifier.match(/style\/$/) then
+		filter :sass, {
+    	:load_paths => [Dir.pwd+"/content/styles"],
+			:syntax => :scss,
+			:style => :compact
+ 	 	}
+	end
+end
+
+compile /^\/(js\/.+?)/ do
+	# do nothing
+end
+
+compile '*' do
+	if item[:filters_pre] && !item[:filters_pre].empty? then
+		item[:filters_pre].each do |f|
+			filter f.to_sym
+		end
+		layout 'default'
+	else
+		unless rep.binary? then
+			case item[:extension]
+			when 'textile' then
+				filter :redcloth
+				layout 'default'
+			when 'md','markdown' then
+				filter :bluecloth
+				layout 'default'
+			when 'bbcode' then
+				filter :bbcode
+				layout 'default'
+			when 'glyph' then
+				glyph_config @item
+				glyph_article_for @item
+        if item[:pdf] then
+          pdf_file = Pathname.new "#{Dir.pwd}/output#{item.identifier.gsub(/\/$/, '')}.pdf"
+          glyph_pdf_for @item unless pdf_file.exist?
+        end
+				Glyph.reset
+			end
+		end
+	end
+end
+
+route '/css/*' do
+	item.identifier.chop + '.css'
+end
+
+route '/styles/_*/' do 
+   nil 
+end 
+
+route '/styles/*' do
+	item.identifier.chop + '.css' 
+end
+
+route '/home/' do
+	"/index.html"
+end
+
+route /\/(img|favicon|robots)\// do
+	item.identifier.chop + ".#{item[:extension]}"
+end
+
+route '/js/*' do
+	item.identifier.chop + '.js'
+end
+
+route '/fonts/*' do
+	item.identifier.chop + ".#{item[:extension]}"
+end
+
+route '*' do
+  item.identifier + 'index.html'
+end
+
+layout '*', :erb
