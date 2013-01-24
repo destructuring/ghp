@@ -31,23 +31,9 @@ compile '*' do
 	else
 		unless rep.binary? then
 			case item[:extension]
-			when 'textile' then
-				filter :redcloth
-				layout 'default'
 			when 'md','markdown' then
-				filter :bluecloth
+				filter :redcarpet
 				layout 'default'
-			when 'bbcode' then
-				filter :bbcode
-				layout 'default'
-			when 'glyph' then
-				glyph_config @item
-				glyph_article_for @item
-        if item[:pdf] then
-          pdf_file = Pathname.new "#{Dir.pwd}/output#{item.identifier.gsub(/\/$/, '')}.pdf"
-          glyph_pdf_for @item unless pdf_file.exist?
-        end
-				Glyph.reset
 			end
 		end
 	end
