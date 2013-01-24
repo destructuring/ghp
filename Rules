@@ -68,7 +68,7 @@ route '/fonts/*' do
 end
 
 route '*' do
-  item.identifier + 'index.html'
+	item.identifier.chop + '.html' 
 end
 
 layout '*', :erb
