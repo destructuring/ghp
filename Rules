@@ -1,25 +1,56 @@
 #!/usr/bin/env ruby
 
-compile /^\/home\// do
+layout '*', :erb
+
+compile '/home'  do
 	filter :erb
 	layout 'default'
 end
 
+route '/home/' do
+	"/index.html"
+end
+
 compile '/styles/_*/' do 
+	# do nothing
+end 
+
+route '/styles/_*/' do 
+   nil 
 end 
 
 compile '/styles/*' do
-	if item[:extension] == "scss" && item.identifier.match(/style\/$/) then
+	if item[:extension] == "scss" && item.identifier.match(%r{style/$}) then
 		filter :sass, {
     	:load_paths => [Dir.pwd+"/content/styles"],
-			:syntax => :scss,
+			:syntax => :sass,
 			:style => :compact
  	 	}
 	end
 end
 
-compile /^\/(js\/.+?)/ do
+route '/styles/*' do
+	item.identifier.chop + '.css' 
+end
+
+compile %r{^/js/.+?} do
 	# do nothing
+end
+
+route '/js/*' do
+	item.identifier.chop + '.js'
+end
+
+route '/css/*' do
+	item.identifier.chop + '.css'
+end
+
+route %r{^/(img|favicon|robots)/} do
+	item.identifier.chop + ".#{item[:extension]}"
+end
+
+route '/fonts/*' do
+	item.identifier.chop + ".#{item[:extension]}"
 end
 
 compile '*' do
@@ -27,48 +58,18 @@ compile '*' do
 		item[:filters_pre].each do |f|
 			filter f.to_sym
 		end
-		layout 'default'
 	else
 		unless rep.binary? then
 			case item[:extension]
 			when 'md','markdown' then
 				filter :redcarpet
-				layout 'default'
 			end
 		end
 	end
-end
-
-route '/css/*' do
-	item.identifier.chop + '.css'
-end
-
-route '/styles/_*/' do 
-   nil 
-end 
-
-route '/styles/*' do
-	item.identifier.chop + '.css' 
-end
-
-route '/home/' do
-	"/index.html"
-end
-
-route /\/(img|favicon|robots)\// do
-	item.identifier.chop + ".#{item[:extension]}"
-end
-
-route '/js/*' do
-	item.identifier.chop + '.js'
-end
-
-route '/fonts/*' do
-	item.identifier.chop + ".#{item[:extension]}"
+	
+  layout 'default'
 end
 
 route '*' do
 	item.identifier.chop + '.html' 
 end
-
-layout '*', :erb
