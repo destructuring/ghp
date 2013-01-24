@@ -5,13 +5,13 @@ data_sources:
   type: filesystem_unified
 text_extensions: 
 - css
-- erb
-- haml
-- html
 - js
-- md
+- html
+- haml
 - sass
 - scss
+- erb
+- md
 output_dir: output
 base_url: "http://destructuring.org"
 author_name: "Tom Bombadil"
