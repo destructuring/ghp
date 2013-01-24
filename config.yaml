@@ -1,19 +1,4 @@
 --- 
-data_sources: 
-- items_root:
-  layouts_root:
-text_extensions: 
-- css
-- js
-- html
-- haml
-- sass
-- scss
-- erb
-- md
-output_dir: output
-auto_prune: true
 base_url: "http://destructuring.org"
 author_name: "Tom Bombadil"
 author_email: "amanibhavam@destructuring.org"
-dev: true
