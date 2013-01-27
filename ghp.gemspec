@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "git home page"
   s.description = "git home page"
   s.date        = %q{2013-01-26}
-  s.executables   = [ ]
+  s.executables   = [ "ghp" ]
   s.require_paths = ["lib"]
-  s.files = %w(LICENSE VERSION README.md) + Dir.glob("libexec/**/*") + Dir.glob("lib/**/*") + Dir.glob("sbin/**/*")
+  s.files = %w(LICENSE VERSION README.md) + Dir.glob("lib/**/*")
 end

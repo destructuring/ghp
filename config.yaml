@@ -1,4 +1,6 @@
 --- 
+content_name: alt_content
+layouts_name: alt_layouts
 base_url: "http://destructuring.org"
 author_name: "Tom Bombadil"
 author_email: "amanibhavam@destructuring.org"

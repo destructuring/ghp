@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+# Load nanoc
+require 'nanoc'
+require 'nanoc/cli'
+
+module Nanoc
+  class Site
+    def load_code_snippets
+      @code_snippets_loaded ||= false
+      return if @code_snippets_loaded
+      @code_snippets_loaded = true
+
+      # Get code snippets
+      @code_snippets = Dir['lib/nanoc/**/*.rb'].sort.map do |filename|
+        Nanoc::CodeSnippet.new(
+          File.read(filename),
+          filename
+        )
+      end
+
+      # Execute code snippets
+      @code_snippets.each { |cs| cs.load }
+    end
+  end
+end
+
+# Run base
+Nanoc::CLI.run(ARGV)
