@@ -5,7 +5,7 @@ require "ghp/version"
 
 Gem::Specification.new do |s|
   s.name        = "ghp"
-  s.version     = ghp::Version.to_s
+  s.version     = GHP::Version.to_s
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["David Nghiem", "Tom Bombadil"]
   s.email       = ["nghidav@gmail.com", "amanibhavam@destructuring.org"]
@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
   s.date        = %q{2013-01-26}
   s.executables   = [ ]
   s.require_paths = ["lib"]
-  s.files = %w(LICENSE VERSION README.mkd) + Dir.glob("libexec/**/*") + Dir.glob("lib/**/*") + Dir.glob("sbin/**/*")
+  s.files = %w(LICENSE VERSION README.md) + Dir.glob("libexec/**/*") + Dir.glob("lib/**/*") + Dir.glob("sbin/**/*")
 end
