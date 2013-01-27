@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
   s.date        = %q{2013-01-26}
   s.executables   = [ "ghp" ]
   s.require_paths = ["lib"]
-  s.files = %w(LICENSE VERSION README.md) + Dir.glob("lib/**/*")
+  s.files = %w(LICENSE LICENSE.nanoc VERSION README.md) + Dir.glob("lib/**/*")
 end
