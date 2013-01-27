@@ -2,6 +2,9 @@ PATH
   remote: .
   specs:
     ghp (0.0.3)
+      nanoc
+      redcarpet
+      sass
 
 GEM
   remote: http://rubygems.org/
@@ -37,6 +40,3 @@ DEPENDENCIES
   ghp!
   ghp-layouts
   guard
-  nanoc
-  redcarpet
-  sass

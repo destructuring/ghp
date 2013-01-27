@@ -16,4 +16,8 @@ Gem::Specification.new do |s|
   s.executables   = [ "ghp" ]
   s.require_paths = ["lib"]
   s.files = %w(LICENSE LICENSE.nanoc VERSION README.md) + Dir.glob("lib/**/*")
+
+  s.add_runtime_dependency(%q<nanoc>)
+  s.add_runtime_dependency(%q<redcarpet>)
+  s.add_runtime_dependency(%q<sass>)
 end
