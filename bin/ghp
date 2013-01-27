@@ -3,9 +3,14 @@
 
 # taken from nanoc version 3.5.0b2
 
+# load Markdown parser
+require 'redcarpet'
+
 # Load nanoc
 require 'nanoc'
 require 'nanoc/cli'
+
+include Nanoc::Helpers::Rendering
 
 module Nanoc
   class Site
@@ -24,6 +29,24 @@ module Nanoc
 
       # Execute code snippets
       @code_snippets.each { |cs| cs.load }
+    end
+  end
+end
+
+module Nanoc::DataSources
+  module Filesystem
+    def items
+      ghp_config = Nanoc::Site.new('.').config
+      alt_content = ghp_config[:alt_content] || "content"
+      alt_dir = (["./lib"] + $:).collect {|x| File.join(File.expand_path("..", x), alt_content) }.select {|x| File.directory? x }[0]
+      load_objects(alt_dir, 'item', Nanoc::Item)
+    end
+
+    def layouts
+      ghp_config = Nanoc::Site.new('.').config
+      alt_layouts = ghp_config[:alt_layouts] || "layouts"
+      alt_dir = (["./lib"] + $:).collect {|x| File.join(File.expand_path("..", x), alt_layouts) }.select {|x| File.directory? x }[0]
+      load_objects(alt_dir, 'layout', Nanoc::Layout)
     end
   end
 end
