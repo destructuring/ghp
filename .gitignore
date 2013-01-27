@@ -1,7 +1,7 @@
-/.bundle
-/vendor/bundle
+/.bundle/
+/vendor/bundle/
+/*.gem
+*.orig
 /tmp
 /output
 /crash.log
-/*.gem
-*.orig
