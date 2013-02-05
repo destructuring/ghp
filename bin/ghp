@@ -36,25 +36,37 @@ end
 module Nanoc::DataSources
   module Filesystem
     def get_ghp_config
-      Nanoc::Site.new(File.read(File.expand_path('../..',  __FILE__)).strip).config
+      Dir.chdir(File.expand_path('../..',  __FILE__).strip) { 
+        Nanoc::Site.new('.').config
+      }
     end
 
-    def pathfind_file(indir = ".")
-      (["./lib"] + $:).collect {|x| File.join(File.expand_path("..", x), in_dir) }.select {|x| File.directory? x }[0]
+    def pathfind_file(in_dir = ".")
+      (["./lib"] + $:).collect {|x| File.join(File.expand_path("..", x), in_dir) }.select {|x| File.directory? x }.each do |found_dir|
+        yield found_dir
+      end
     end
 
     def items
       ghp_config = get_ghp_config
       alt_content = ghp_config[:alt_content] || "content"
-      alt_dir = pathfind_file(alt_content)
-      load_objects(alt_dir, 'item', Nanoc::Item)
+
+      acc = [ ]
+      pathfind_file(alt_content) do |alt_dir|
+        acc += load_objects(alt_dir, 'item', Nanoc::Item)
+      end
+      acc
     end
 
     def layouts
       ghp_config = get_ghp_config
       alt_layouts = ghp_config[:alt_layouts] || "layouts"
-      alt_dir = pathfind_file(alt_layouts)
-      load_objects(alt_dir, 'layout', Nanoc::Layout)
+
+      acc = []
+      pathfind_file(alt_layouts) do |alt_dir|
+        acc += load_objects(alt_dir, 'layout', Nanoc::Layout)
+      end
+      acc
     end
   end
 end
