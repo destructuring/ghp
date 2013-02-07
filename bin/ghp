@@ -36,9 +36,7 @@ end
 module Nanoc::DataSources
   module Filesystem
     def get_ghp_config
-      Dir.chdir(File.expand_path('../..',  __FILE__).strip) { 
-        Nanoc::Site.new('.').config
-      }
+      Nanoc::Site.new('.').config
     end
 
     def pathfind_file(in_dir = ".")
