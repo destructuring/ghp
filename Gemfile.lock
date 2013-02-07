@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ghp (0.0.6)
+    ghp (0.0.7)
       nanoc
       redcarpet
       sass
