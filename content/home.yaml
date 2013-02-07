@@ -1,7 +1,0 @@
----
-filters_pre:
-- erb
-permalink: home
-author: author
-title: title
-type: home

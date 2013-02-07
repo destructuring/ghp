@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.files = %w(LICENSE LICENSE.nanoc VERSION README.md) + Dir.glob("lib/**/*")
 
-  s.add_runtime_dependency(%q<nanoc>)
+  s.add_runtime_dependency("nanoc", "~> 3.4.3")
   s.add_runtime_dependency(%q<redcarpet>)
-  s.add_runtime_dependency(%q<sass>)
+  s.add_runtime_dependency(%q<ghp-bootstrap>)
 end

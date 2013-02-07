@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     ghp (0.0.7)
-      nanoc
+      ghp-bootstrap
+      nanoc (~> 3.4.3)
       redcarpet
-      sass
 
 GEM
   remote: http://rubygems.org/
@@ -13,7 +13,7 @@ GEM
     colored (1.2)
     cri (2.3.0)
       colored (>= 1.2)
-    ghp-layouts (0.0.5)
+    ghp-bootstrap (0.0.4)
     guard (1.6.1)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -29,7 +29,6 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     redcarpet (2.2.2)
-    sass (3.2.5)
     slop (3.4.3)
     thor (0.17.0)
 
@@ -38,5 +37,4 @@ PLATFORMS
 
 DEPENDENCIES
   ghp!
-  ghp-layouts
   guard
