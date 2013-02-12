@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#/ NAME
+#/     rocco -- wrapper for rocco for redcarpet compat
+#/
+#/ SYNOPSIS
+#/     rocco files...
+
+# figure out the project root under which bin, lib live
+shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+
+# find pygmentize from pygments.rb
+PATH=$PATH:$(bundle show  pygments.rb)/vendor/pygments-main
+
+# execute the rocco gem wrapper with redcarpet compat
+exec bundle exec "$shome/libexec/rocco" "$@"
