@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ghp (0.0.9)
+    ghp (0.0.10)
       ghp-bootstrap
       nanoc (~> 3.4.3)
       pygments.rb
