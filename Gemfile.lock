@@ -4,7 +4,9 @@ PATH
     ghp (0.0.8)
       ghp-bootstrap
       nanoc (~> 3.4.3)
+      pygments.rb
       redcarpet
+      rocco
 
 GEM
   remote: http://rubygems.org/
@@ -22,15 +24,24 @@ GEM
     listen (0.7.2)
     lumberjack (1.0.2)
     method_source (0.8.1)
+    mustache (0.99.4)
     nanoc (3.4.3)
       cri (~> 2.2)
+    posix-spawn (0.3.6)
     pry (0.9.11.4)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pygments.rb (0.3.7)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.1.0)
     redcarpet (2.2.2)
+    rocco (0.8.2)
+      mustache
+      redcarpet
     slop (3.4.3)
     thor (0.17.0)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby

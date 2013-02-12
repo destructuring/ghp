@@ -20,4 +20,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency("nanoc", "~> 3.4.3")
   s.add_runtime_dependency(%q<redcarpet>)
   s.add_runtime_dependency(%q<ghp-bootstrap>)
+  s.add_runtime_dependency(%q<pygments.rb>)
+  s.add_runtime_dependency(%q<rocco>)
 end
