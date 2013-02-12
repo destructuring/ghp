@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<ghp-bootstrap>)
   s.add_runtime_dependency(%q<pygments.rb>)
   s.add_runtime_dependency(%q<rocco>)
+  s.add_runtime_dependency(%q<ronn>)
 end
