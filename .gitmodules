@@ -1,0 +1,3 @@
+[submodule "vendor/projects/shocco"]
+	path = vendor/projects/shocco
+	url = http://github.com/rtomayko/shocco
